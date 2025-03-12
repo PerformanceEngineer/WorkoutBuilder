@@ -1,0 +1,36 @@
+@BASE_URL = http://localhost:3000
+@TOKEN  = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTc0MTc3MTc5MywiZXhwIjoxNzQxNzc1MzkzfQ.FoOwoM-dp_5__Asa7EEvwKJRoVmcyIuYnJb-Ai5NSNE
+
+###
+POST {{BASE_URL}}/user/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+###
+POST {{BASE_URL}}/exercise/create
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "name": "Push-up 79",
+  "description": "A basic upper body exercise.",
+  "videoUrl": "https://example.com/pushup-tutorial",
+  "categoryTitles": ["UBPS"]
+}
+
+###
+GET {{BASE_URL}}/exercise/getBycategory?category=UBPS
+Authorization: Bearer {{TOKEN}}
+
+###
+POST {{BASE_URL}}/category/create
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
+
+{
+  "title": "LBPS"
+}
